@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\UserController;
+use \App\Http\Controllers\WebsiteController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -18,30 +19,10 @@ Route::post('reset-password', [ResetPasswordController::class, 'reset'])->name('
 
 Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::apiResource('users', UserController::class);
-    Route::apiResource('posts', PostController::class);
-    Route::apiResource('categories', CategoryController::class);
-    Route::apiResource('roles', RoleController::class);
-    Route::get('role-list', [RoleController::class, 'getList']);
-    Route::get('role-permissions/{id}', [PermissionController::class, 'getRolePermissions']);
-    Route::put('/role-permissions', [PermissionController::class, 'updateRolePermissions']);
-    Route::apiResource('permissions', PermissionController::class);
-    Route::get('category-list', [CategoryController::class, 'getList']);
     Route::get('/user', [ProfileController::class, 'user']);
     Route::put('/user', [ProfileController::class, 'update']);
-
-    Route::get('abilities', function(Request $request) {
-        return $request->user()->roles()->with('permissions')
-            ->get()
-            ->pluck('permissions')
-            ->flatten()
-            ->pluck('name')
-            ->unique()
-            ->values()
-            ->toArray();
-    });
 });
+Route::post('websites', [WebsiteController::class, 'store']);
+Route::get('/websites', [WebsiteController::class, 'index']);
+Route::get('/websites/{id}', [WebsiteController::class, 'show']);
 
-Route::get('category-list', [CategoryController::class, 'getList']);
-Route::get('get-posts', [PostController::class, 'getPosts']);
-Route::get('get-category-posts/{id}', [PostController::class, 'getCategoryByPosts']);
-Route::get('get-post/{id}', [PostController::class, 'getPost']);

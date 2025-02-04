@@ -1,9 +1,11 @@
 <template>
-    <nav class="navbar navbar-expand-lg sticky-top flex-md-nowrap shadow-sm" style="background-color: #e3f2fd;">
+    <nav class="navbar navbar-expand-lg sticky-top flex-md-nowrap shadow-sm mb-2" style="background: white;border-radius: 0 0 20px 20px" >
         <div class="container-fluid">
-            <router-link to="/" class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 nuxt-link-active mini">
-                <span>Laravel Vue Stater</span>
-            </router-link>
+                <img
+                    class="logo"
+                    src="https://www.die-zeitungen.de/fileadmin/_processed_/8/8/csm_mgo_360_logo_13bfa93c74.jpg"
+                    alt="Logo"
+                />
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -53,5 +55,8 @@ const {processing, logout} = useAuth();
 </script>
 
 <style scoped>
-
+.logo {
+    width: 100px;
+    margin: 0 30px 0px;
+}
 </style>

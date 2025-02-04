@@ -34,28 +34,12 @@ function guest(to, from, next) {
 export default [
     {
         path: '/',
-        // redirect: { name: 'login' },
         component: GuestLayout,
         children: [
             {
                 path: '/',
                 name: 'home',
-                component: () => import('../views/home/index.vue'),
-            },
-            {
-                path: 'posts',
-                name: 'public-posts.index',
-                component: () => import('../views/posts/index.vue'),
-            },
-            {
-                path: 'posts/:id',
-                name: 'public-posts.details',
-                component: () => import('../views/posts/details.vue'),
-            },
-            {
-                path: 'category/:id',
-                name: 'category-posts.index',
-                component: () => import('../views/category/posts.vue'),
+                redirect : '/admin'
             },
             {
                 path: 'login',
@@ -96,6 +80,11 @@ export default [
                 path: '',
                 component: () => import('../views/admin/index.vue'),
                 meta: { breadCrumb: 'Admin' }
+            },
+            {
+                path: 'websitedetails/:id',
+                name: 'WebsiteDetails',
+                component: () => import('../views/website/WebsiteDetails.vue'),
             },
             {
                 name: 'profile.index',

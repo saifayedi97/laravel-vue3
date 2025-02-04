@@ -7,8 +7,9 @@
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
 
-body {
-    background-color: #f0f2fc !important;
+body ,html{
+    background-color: #f6f6f6 !important;
+    height: 100%;
 }
 
 a {
